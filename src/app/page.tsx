@@ -3,16 +3,15 @@
 import { useState, useRef, CSSProperties, useEffect } from "react";
 
 export default function ClientComponent() {
-    const [weatherData, setWeatherData] = useState<null | { name: string, main: any, temp: number, humidity: number, wind: any, speed: number}>(null);
+    const [weatherData, setWeatherData] = useState<null | { name: string, main: any, temp: number, humidity: number, wind: any, speed: number, weather: any}>(null);
     const [placeholder, setPlaceholder] = useState<string>("Napiš název města");
     const [activeTable, setActiveTable] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
 
     const searchBoxRef = useRef<HTMLInputElement>(null);
 
-    const API_KEY = "09475c97acf6dee73a0d12795ea9172b";
-    const API_URL =
-        `https://api.openweathermap.org/data/2.5/weather?units=metric&q=`;
+    const API_KEY = "09475c97acf6dee73a0d12795ea9172b"
+    const API_URL = "https://api.openweathermap.org/data/2.5/weather?units=metric&q="
 
     async function checkWeather() {
         setIsLoading(true);
@@ -82,7 +81,7 @@ export default function ClientComponent() {
                 activeTable === 1 && (
                     <div ref={tableRef}>
                         <div className="flex items-center justify-center">
-                            <img src="/clouds.png" className="w-[170px] mt-[30px]"/>
+                            <img src="/clear.png" className="w-[170px] mt-[30px]"/>
                         </div>
                         <h1 className="text-7xl font-medium">{
                             Math.round(weatherData?.main.temp) + "°C"
