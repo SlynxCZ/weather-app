@@ -1,17 +1,16 @@
 "use client";
 
-import { useState, useRef, CSSProperties, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export default function ClientComponent() {
     const [weatherData, setWeatherData] = useState<null | { name: string, main: any, temp: number, humidity: number, wind: any, speed: number, weather: any}>(null);
     const [placeholder, setPlaceholder] = useState<string>("Napiš název města");
     const [activeTable, setActiveTable] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
-
     const searchBoxRef = useRef<HTMLInputElement>(null);
 
-    const API_KEY = "09475c97acf6dee73a0d12795ea9172b"
-    const API_URL = "https://api.openweathermap.org/data/2.5/weather?units=metric&q="
+    const API_URL = process.env.NEXT_PUBLIC_API_URL
+    const API_KEY = process.env.NEXT_PUBLIC_API_KEY
 
     async function checkWeather() {
         setIsLoading(true);
@@ -26,6 +25,8 @@ export default function ClientComponent() {
                 return;
             }
 
+            console.log(API_KEY);
+            // @ts-ignore
             const response = await fetch(API_URL + searchBoxRef.current?.value + `&appid=${API_KEY}`);
             const data = await response.json();
             setWeatherData(data);
