@@ -36,8 +36,8 @@ export default function ClientPage() {
         }
       }, [activeTable]);
 
-    const API_URL = process.env.NEXT_PUBLIC_API_URL
-    const API_KEY = process.env.NEXT_PUBLIC_API_KEY
+    const API_URL = process.env.VERCEL_ENV_API_URL
+    const API_KEY = process.env.VERCEL_ENV_API_KEY
 
     async function checkWeather() {
         setIsLoading(true);
