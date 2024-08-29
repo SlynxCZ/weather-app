@@ -1,7 +1,5 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
-
 interface props{
   weatherData: any,
   searchBoxRef: any,
@@ -11,10 +9,6 @@ interface props{
   isLoading: boolean
   checkWeather: () => void
 }
-
-let colClass: string
-let colImgClass: string
-let detailClass: string
 
 export const classes = {
   colClass: "flex items-center text-left",
